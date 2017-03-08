@@ -1,5 +1,5 @@
 from app import app
-from datetime import date
+import datetime
 import random
 import time
 import json
@@ -12,3 +12,11 @@ def index():
     jsonObj['Time'] = currentTime
     #return json.dumps(jsonObj)
     return str(currentTime)
+
+@app.route('/random')
+def randomDate():
+   year = random.choice(range(2000, 2025))
+   month = random.choice(range(1,13))
+   day = random.choice(range(1,31))
+   testdate = datetime.datetime(year,month,day).strftime('%s')
+   return str(testdate)
